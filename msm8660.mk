@@ -14,6 +14,7 @@
 
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
+    device/htc/msm8660-common/prebuilt/89bruce:system/etc/init.d/89bruce \
     device/htc/msm8660-common/prebuilt/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
     device/htc/msm8660-common/prebuilt/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh
 
@@ -39,7 +40,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio_policy.msm8660 \
-    audio_policy.conf \
     audio.primary.msm8660 \
     libaudioutils
 
@@ -83,24 +83,16 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
 
+# Media config
+PRODUCT_COPY_FILES += \
+    device/htc/msm8660-common/configs/audio_policy.conf:system/etc/audio_policy.conf
+
 # MSM8660 firmware
 PRODUCT_COPY_FILES += \
+    device/htc/msm8660-common/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw \
     device/htc/msm8660-common/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
-    device/htc/msm8660-common/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
-    device/htc/msm8660-common/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw
+    device/htc/msm8660-common/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
-
-# Common build properties
-PRODUCT_PROPERTY_OVERRIDES += \
-    com.qc.hardware=true \
-    debug.composition.type=dyn \
-    debug.egl.hw=1 \
-    debug.enabletr=true \
-    debug.mdpcomp.maxlayer=3 \
-    debug.mdpcomp.logs=0 \
-    debug.sf.hw=1 \
-    dev.pm.dyn_samplingrate=1 \
-    ro.opengles.version=131072
