@@ -122,5 +122,6 @@ BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 # Webkit
 ENABLE_WEBGL := true
 TARGET_FORCE_CPU_UPLOAD := true
+DYNAMIC_SHARED_LIBV8SO := true
 
 TARGET_EXTRA_CFLAGS += $(call cc-option,-mtune=cortex-a9,$(call cc-option,-mtune=cortex-a8)) $(call cc-option,-mcpu=cortex-a9,$(call cc-option,-mcpu=cortex-a8))
