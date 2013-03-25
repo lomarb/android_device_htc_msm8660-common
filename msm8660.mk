@@ -16,7 +16,7 @@
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-   frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
+    frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
@@ -44,8 +44,7 @@ PRODUCT_PACKAGES += \
     audio_policy.msm8660 \
     audio.primary.msm8660 \
     libaudioutils \
-    audio.usb.default \
-    audio_policy.conf
+    audio.usb.default
 
 # Omx
 PRODUCT_PACKAGES += \
@@ -104,7 +103,8 @@ endif
 # Media configuration
 PRODUCT_COPY_FILES += \
     device/htc/msm8660-common/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    device/htc/msm8660-common/configs/media_profiles.xml:system/etc/media_profiles.xml
+    device/htc/msm8660-common/configs/media_profiles.xml:system/etc/media_profiles.xml \
+    device/htc/msm8660-common/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # 8660 Common Firmware
 PRODUCT_COPY_FILES += \
