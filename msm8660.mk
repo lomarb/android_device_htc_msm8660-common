@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Qualcomm scripts
+PRODUCT_COPY_FILES += \
+    device/htc/msm8660-common/prebuilt/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+    device/htc/msm8660-common/prebuilt/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -32,12 +36,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
-# QCOM Display
-PRODUCT_PACKAGES += \
-    copybit.msm8660 \
-    gralloc.msm8660 \
-    hwcomposer.msm8660
-
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
@@ -46,7 +44,23 @@ PRODUCT_PACKAGES += \
     libaudioutils \
     audio.usb.default
 
-# Omx
+# GPS
+PRODUCT_COPY_FILES += \
+    device/common/gps/gps.conf_US_SUPL:system/etc/gps.conf
+
+# Graphics
+PRODUCT_PACKAGES += \
+    copybit.msm8660 \
+    gralloc.msm8660 \
+    hwcomposer.msm8660 \
+    lights.msm8660 \
+    libgenlock \
+    libmemalloc \
+    liboverlay \
+    libqdutils \
+    libtilerenderer
+
+# OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
     libdivxdrmdecrypt \
@@ -60,25 +74,18 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libOmxEvrcEnc \
     libOmxAmrEnc
-    
-# FM Radio
-PRODUCT_PACKAGES += \
-    FmRadio
-
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/com.stericsson.hardware.fm.receiver.xml:system/etc/permissions/com.stericsson.hardware.fm.receiver.xml
 
 # HDMI
 PRODUCT_PACKAGES += \
     hdmid
 
-# Misc
+# Torch
+PRODUCT_PACKAGES += \
+    Torch
+
+# USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
-
-# Lights
-PRODUCT_PACKAGES += \
-    lights.msm8660
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
@@ -92,21 +99,14 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
 
-# for bugmailer
-ifneq ($(TARGET_BUILD_VARIANT),user)
-    PRODUCT_PACKAGES += send_bug
-    PRODUCT_COPY_FILES += \
-        system/extras/bugmailer/bugmailer.sh:system/bin/bugmailer.sh \
-        system/extras/bugmailer/send_bug:system/bin/send_bug
-endif
-
 # Media configuration
 PRODUCT_COPY_FILES += \
     device/htc/msm8660-common/configs/media_codecs.xml:system/etc/media_codecs.xml \
     device/htc/msm8660-common/configs/media_profiles.xml:system/etc/media_profiles.xml \
     device/htc/msm8660-common/configs/audio_policy.conf:system/etc/audio_policy.conf
 
-# 8660 Common Firmware
+
+# MSM8660 firmware
 PRODUCT_COPY_FILES += \
     device/htc/msm8660-common/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
     device/htc/msm8660-common/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
@@ -116,16 +116,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/msm8660-common/firmware/bcm4330.hcd:system/vendor/firmware/bcm4330.hcd \
     device/htc/msm8660-common/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd
-
-# Common Qualcomm scripts
-PRODUCT_COPY_FILES += \
-    device/htc/msm8660-common/prebuilt/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-    device/htc/msm8660-common/prebuilt/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh
-
-# We have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
-
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=1
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi
@@ -143,7 +133,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # BT
 PRODUCT_COPY_FILES += \
     device/htc/msm8660-common/bluetooth/bt_vendor.conf:/system/etc/bluetooth/bt_vendor.conf
-    
-# Cammera wrapper
+
+# Camera wrapper
 PRODUCT_PACKAGES += \
     camera.default

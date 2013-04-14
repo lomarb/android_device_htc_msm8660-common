@@ -12,17 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Vendor
+BOARD_VENDOR := htc
+
 TARGET_SPECIFIC_HEADER_PATH := device/htc/msm8660-common/include
 
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 
+# Kernel
+TARGET_KERNEL_SOURCE := kernel/htc/msm8660
+
 # Platform
 TARGET_BOARD_PLATFORM := msm8660
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
-
-# Vendor
-BOARD_VENDOR := htc
 
 # Architecture
 TARGET_ARCH := arm
@@ -36,36 +39,20 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 # Flags
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DNO_QCOM_MVS
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
+
+# FB legacy
 BOARD_EGL_NEEDS_LEGACY_FB := true
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_LEGACY_QCOM := true
 
-# Scorpion optimizations
-#TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
-#TARGET_USE_SCORPION_PLD_SET := true
-#TARGET_SCORPION_BIONIC_PLDOFFS := 6
-#TARGET_SCORPION_BIONIC_PLDSIZE := 128
-
-# Wifi related defines
-WIFI_BAND                        := 802_11_ABG
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
-BOARD_WLAN_DEVICE                := bcmdhd
-WIFI_DRIVER_FW_PATH_STA          := "/vendor/firmware/fw_bcmdhd.bin"
-WIFI_DRIVER_FW_PATH_AP           := "/vendor/firmware/fw_bcmdhd_apsta.bin"
-WIFI_DRIVER_FW_PATH_P2P          := "/vendor/firmware/fw_bcmdhd_p2p.bin"
-WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
-BOARD_LEGACY_NL80211_STA_EVENTS := true
-
 # Audio
 TARGET_QCOM_AUDIO_VARIANT := caf
 COMMON_GLOBAL_CFLAGS += -DHTC_ACOUSTIC_AUDIO -DLEGACY_QCOM_VOICE
+
+# Audio legacy
 #TARGET_QCOM_AUDIO_VARIANT := legacy
 #COMMON_GLOBAL_CFLAGS += -DQCOM_ACDB_ENABLED -DLEGACY_QCOM_VOICE
 #COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK
@@ -80,6 +67,7 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/htc/msm8660-common/bluetoo
 BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := true
 
 # Camera
+BOARD_USES_QCOM_LEGACY_CAM_PARAMS := true
 CAMERA_USES_SURFACEFLINGER_CLIENT_STUB := true
 COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB -DNO_UPDATE_PREVIEW
 BOARD_HAVE_HTC_FFC := true
@@ -89,37 +77,32 @@ BOARD_CAMERA_USE_MM_HEAP := true
 # Camera wrapper
 COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 
-# QCOM hardware
-BOARD_USES_QCOM_HARDWARE := true
+# Filesystem
+BOARD_VOLD_MAX_PARTITIONS := 36
+
+# FM Radio
+# 4.2 -> commenting these for audio policy
+#BOARD_HAVE_QCOM_FM := true
+#COMMON_GLOBAL_CFLAGS += -DQCOM_FM_ENABLED
+
+# GPS
 BOARD_USES_QCOM_GPS := true
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
 # Graphics
 TARGET_QCOM_DISPLAY_VARIANT := legacy
 BOARD_USES_LEGACY_MEDIA := true
-COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK -DQCOM_ROTATOR_KERNEL_FORMATS
+COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK
 USE_OPENGL_RENDERER := true
-#older
-#TARGET_HAVE_BYPASS := false
-#TARGET_USES_C2D_COMPOSITION := true
-#TARGET_USES_OVERLAY := true
-#TARGET_QCOM_HDMI_OUT := true
-#TARGET_QCOM_HDMI_RESOLUTION_AUTO := true
-#endolder
 TARGET_NO_HW_VSYNC := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_PMEM := true
 BOARD_EGL_CFG := device/htc/msm8660-common/configs/egl.cfg
 
 # Lights
+# legacy LIBLIGHT naming
+TARGET_PROVIDES_LIBLIGHT := true
 TARGET_PROVIDES_LIBLIGHTS := true
-
-# Filesystem
-BOARD_VOLD_MAX_PARTITIONS := 36
-
-# FM Radio
-BOARD_HAVE_FM_RADIO := true
-BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 
 # Webkit
 ENABLE_WEBGL := true
