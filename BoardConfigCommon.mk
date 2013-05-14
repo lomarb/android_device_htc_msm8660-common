@@ -20,6 +20,9 @@ TARGET_SPECIFIC_HEADER_PATH := device/htc/msm8660-common/include
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 
+# Use headers in this folder instead of from kernel.
+TARGET_PREBUILT_HEADERS := true
+
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/htc/msm8660
 
