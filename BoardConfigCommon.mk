@@ -34,8 +34,8 @@ TARGET_ARCH := arm
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
-#TARGET_ARCH_VARIANT_CPU := cortex-a9
 TARGET_CPU_SMP := true
+TARGET_CPU_VARIANT := cortex-a9
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 # Flags
@@ -101,7 +101,6 @@ TARGET_USES_PMEM := true
 BOARD_EGL_CFG := device/htc/msm8660-common/configs/egl.cfg
 
 # Lights
-# legacy LIBLIGHT naming
 TARGET_PROVIDES_LIBLIGHT := true
 TARGET_PROVIDES_LIBLIGHTS := true
 
