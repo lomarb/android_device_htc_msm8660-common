@@ -38,6 +38,7 @@ TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := cortex-a9
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_GCC_VERSION := 4.6
+TARGET_GCC_VERSION_EXP := 4.6
 
 # Flags
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
