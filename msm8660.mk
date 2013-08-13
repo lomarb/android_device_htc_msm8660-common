@@ -141,4 +141,4 @@ PRODUCT_COPY_FILES += \
 
 # Camera wrapper
 PRODUCT_PACKAGES += \
-    camera.msm8660
+    camera.default
