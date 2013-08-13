@@ -74,6 +74,10 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libOmxEvrcEnc \
     libOmxAmrEnc
+    
+PRODUCT_PACKAGES += \
+    libnetcmdiface \
+    libsurfaceflinger_client
 
 # HDMI
 PRODUCT_PACKAGES += \
