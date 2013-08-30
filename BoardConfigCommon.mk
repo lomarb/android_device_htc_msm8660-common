@@ -16,7 +16,7 @@
 BOARD_VENDOR := htc
 
 # Use headers in this folder instead of from kernel.
-TARGET_PREBUILT_HEADERS := true
+
 TARGET_SPECIFIC_HEADER_PATH := device/htc/msm8660-common/include
 
 # Bootloader
